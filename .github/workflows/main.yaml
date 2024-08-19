@@ -63,8 +63,13 @@ jobs:
           chmod +x kli
           LATEST_VERSION=$( ./kli semver 2>&1 )
           sed -i "s/version=\"[^\"]*\"/version=\"${LATEST_VERSION#v}\"/" setup.py
-          git add setup.py
-          git commit -m "chore: Version update ${LATEST_VERSION#v}"
+          HAS_CHANGES=$( git status | grep setup.py | wc -l )
+          if [ "$HAS_CHANGES" -eq 1 ]; then
+            git add setup.py
+            git commit -m "chore: Version update ${LATEST_VERSION#v}"
+          else
+            echo "No changes in setup.py"
+          fi
       - name: Create tag
         id: create_tag
         run: |
