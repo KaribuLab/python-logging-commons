@@ -94,7 +94,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pipenv install --deploy --ignore-pipfile
+          pipenv install --deploy --dev --ignore-pipfile
       
       - name: Build package
         run: |
