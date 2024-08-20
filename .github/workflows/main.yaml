@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - "main"
-
+    tags:
+      - "v*"
 jobs:
   check_tag:
     runs-on: ubuntu-latest
@@ -63,23 +64,9 @@ jobs:
         run: |
           chmod +x kli
           ./kli semver -t
-      - name: Update version
-        run: |
-          chmod +x kli
-          LATEST_VERSION=$( ./kli semver 2>&1 )
-          sed -i "s/version=\"[^\"]*\"/version=\"${LATEST_VERSION#v}\"/" setup.py
-          sed -i "s/version\s=\s\"[^\"]*\"/version = \"${LATEST_VERSION#v}\"/" pyproject.toml
-          HAS_CHANGES=$( git status | grep setup.py | wc -l )
-          if [ "$HAS_CHANGES" -eq 1 ]; then
-            git add setup.py
-            git add pyproject.toml
-            git commit -m "chore: Version update ${LATEST_VERSION#v}"
-            git push origin main
-          else
-            echo "No changes in setup.py"
-          fi
+
   build_and_publish:
-    needs: create_tag
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -91,6 +78,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Update version
+        run: |
+          LATEST_VERSION=$( git describe --tags --abbrev=0 )
+          sed -i "s/version=\"[^\"]*\"/version=\"${LATEST_VERSION#v}\"/" setup.py
+          sed -i "s/version\s=\s\"[^\"]*\"/version = \"${LATEST_VERSION#v}\"/" pyproject.toml
+          HAS_CHANGES=$( git status | grep setup.py | wc -l )
+          if [ "$HAS_CHANGES" -eq 1 ]; then
+            git add setup.py
+            git add pyproject.toml
+            git commit -m "chore: Version update ${LATEST_VERSION#v}"
+            git push origin main
+          else
+            echo "No changes in setup.py"
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
