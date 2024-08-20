@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="logging-commons",
@@ -9,7 +9,7 @@ setup(
     author_email="paascencio@gmail.com",
     description="Python Logging Tools",
     python_requires=">=3.12",
-    packages=find_packages(),
+    packages=["logging_commons"],
     include_package_data=True,
     platforms=["MacOS X", "Linux", "Windows"],
 )
