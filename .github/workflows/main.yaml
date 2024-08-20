@@ -50,15 +50,18 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.KARIBU_SSH_KEY }}
+
       - name: Set up Git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Download kli
         uses: actions/download-artifact@v4
         with:
           name: kli
           path: ./
+
       - name: Create tag
         id: create_tag
         run: |
@@ -95,7 +98,7 @@ jobs:
             git add setup.py
             git add pyproject.toml
             git commit -m "chore: Version update ${LATEST_VERSION#v}"
-            git push origin main
+            git push
           else
             echo "No changes in setup.py"
           fi
