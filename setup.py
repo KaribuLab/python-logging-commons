@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="logging-commons",
-    version="0.1.12",
+    version="0.1.13",
     url="https://github.com/KaribuLab/python-logging-commons",
     license="Apache Software License",
     author="Patricio Ascencio",
