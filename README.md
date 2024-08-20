@@ -10,7 +10,7 @@ config = {
     "disable_existing_loggers": False,
     "formatters": {
         "default": {
-            "()": "system.logging_helper.JsonFormatter",
+            "()": "logging_commons.JsonFormatter",
             "format_dict": {
                 "level": "levelname",
                 "timestamp": "asctime",
@@ -39,7 +39,17 @@ config = {
 Example Output
 
 ```json
-
+{
+    "level": "INFO",
+    "timestamp": "2024-08-19T20:57:12.998Z",
+    "logger_name": "main",
+    "module": "main",
+    "line": 22,
+    "message": "Hello world!",
+    "context": {
+        "process_id": "fa0fb339-6bac-4b4b-ab17-3812689c71e4"
+    }
+}
 ```
 
 ### MDC Usage

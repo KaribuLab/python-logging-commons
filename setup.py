@@ -4,6 +4,7 @@ setup(
     name="logging-commons",
     version="0.1.7",
     url="https://github.com/KaribuLab/python-logging-commons",
+    long_description_content_type = "text/markdown",
     license="Apache Software License",
     author="Patricio Ascencio",
     author_email="paascencio@gmail.com",
