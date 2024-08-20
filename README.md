@@ -10,7 +10,7 @@ config = {
     "disable_existing_loggers": False,
     "formatters": {
         "default": {
-            "()": "logging_commons.JsonFormatter",
+            "()": "logging_commons.formatter.JsonFormatter",
             "format_dict": {
                 "level": "levelname",
                 "timestamp": "asctime",
@@ -53,6 +53,16 @@ Example Output
 ```
 
 ### MDC Usage
+
+```python
+import logging
+from logging_commons.utils import MDC
+
+LOGGER = logging.getLogger(__name__)
+
+with MDC(process_id=):
+    LOGGER.info("Hello world!")
+```
 
 ## Special Thanks:
 

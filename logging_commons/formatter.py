@@ -1,6 +1,6 @@
 import logging
 import json
-from logging_tools.common import MDC
+from logging_commons.utils import MDC
 
 
 class JsonFormatter(logging.Formatter):
