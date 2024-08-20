@@ -63,6 +63,7 @@ jobs:
           chmod +x kli
           LATEST_VERSION=$( ./kli semver 2>&1 )
           sed -i "s/version=\"[^\"]*\"/version=\"${LATEST_VERSION#v}\"/" setup.py
+          sed -i "s/version\s=\s\"[^\"]*\"/version = \"${LATEST_VERSION#v}\"/" pyproject.toml
           HAS_CHANGES=$( git status | grep setup.py | wc -l )
           if [ "$HAS_CHANGES" -eq 1 ]; then
             git add setup.py
@@ -74,8 +75,6 @@ jobs:
         id: create_tag
         run: |
           chmod +x kli
-          LATEST_VERSION=$( ./kli semver 2>&1 )
-          sed -i "s/version=\"[^\"]*\"/version=\"${LATEST_VERSION#v}\"/" setup.py
           ./kli semver -t
   build_and_publish:
     needs: create_tag
