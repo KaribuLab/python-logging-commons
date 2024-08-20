@@ -67,7 +67,9 @@ jobs:
           HAS_CHANGES=$( git status | grep setup.py | wc -l )
           if [ "$HAS_CHANGES" -eq 1 ]; then
             git add setup.py
+            git add pyproject.toml
             git commit -m "chore: Version update ${LATEST_VERSION#v}"
+            git push origin HEAD:main
           else
             echo "No changes in setup.py"
           fi
