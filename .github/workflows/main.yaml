@@ -95,6 +95,7 @@ jobs:
           sed -i "s/version\s=\s\"[^\"]*\"/version = \"${LATEST_VERSION#v}\"/" pyproject.toml
           HAS_CHANGES=$( git status | grep setup.py | wc -l )
           if [ "$HAS_CHANGES" -eq 1 ]; then
+            git pull origin main
             git add setup.py
             git add pyproject.toml
             git commit -m "chore: Version update ${LATEST_VERSION#v}"
