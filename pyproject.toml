@@ -6,6 +6,7 @@ authors = [
     {name = "Patricio Ascencio", email = "paascencio@gmail.com"},
 ]
 requires-python = ">=3.12"
+long_description_content_type = "text/markdown"
 [project.license]
 text = "Apache-2.0"
 [project.urls]
