@@ -2,4 +2,4 @@ __pycache__
 kli
 build
 dist
-logging_tools.egg-info
+logging_commons.egg-info
