@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="logging-commons",
-    version="0.1.10",
+    version="0.1.11",
     url="https://github.com/KaribuLab/python-logging-commons",
     long_description_content_type = "text/markdown",
     long_description=open("README.md",encoding="UTF-8").read(),
