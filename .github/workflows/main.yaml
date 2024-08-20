@@ -98,7 +98,7 @@ jobs:
             git add setup.py
             git add pyproject.toml
             git commit -m "chore: Version update ${LATEST_VERSION#v}"
-            git push
+            git push origin HEAD:main
           else
             echo "No changes in setup.py"
           fi
