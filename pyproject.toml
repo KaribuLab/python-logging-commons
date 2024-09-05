@@ -1,6 +1,6 @@
 [project]
 name = "logging-commons"
-version = "0.1.20"
+version = "0.1.22"
 description = "Python Logging Commons"
 authors = [
     {name = "Patricio Ascencio", email = "paascencio@gmail.com"},
